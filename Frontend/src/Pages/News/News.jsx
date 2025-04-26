@@ -4,7 +4,7 @@ import './News.css'
 const News = () => {
   return (
     <>
-      
+      <div>News</div>
     </>
   )
 }
