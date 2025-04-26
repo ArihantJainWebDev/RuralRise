@@ -1,0 +1,34 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --falu-red: #6f1d1b;
+    --lion: #bb9457;
+    --bistre: #432818;
+    --brown: #99582a;
+    --peach: #ffe6a7;
+    --font-primary: 'Poppins', sans-serif;
+    --transition-speed: 0.3s;
+}
+
+body {
+    font-family: var(--font-primary);
+    color: var(--bistre);
+    height: 100%;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+ul {
+    list-style-type: none;
+}
+
+button {
+    cursor: pointer;
+}

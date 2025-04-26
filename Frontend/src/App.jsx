@@ -19,20 +19,22 @@ const App = () => {
       <div className="navbar">
         <Navbar />
       </div>
-      <AnimatePresence mode='wait'>
-        <Routes location={location} key={location.pathname}>
-          <Route path="/" element={<Home />} />
-          <Route path="/marketplace" element={<Marketplace />} />
-          <Route path="/news" element={<News />} />
-          <Route path="/reference" element={<Reference />} />
-          <Route path="/technologies" element={<Technologies />} />
-        </Routes>
-      </AnimatePresence>
-      <div className="chatbot">
-        <Chatbot />
-      </div>
-      <div className="footer">
-        <Footer />
+      <div className="body">
+        <AnimatePresence mode='wait'>
+          <Routes location={location} key={location.pathname}>
+            <Route path="/" element={<Home />} />
+            <Route path="/marketplace" element={<Marketplace />} />
+            <Route path="/news" element={<News />} />
+            <Route path="/reference" element={<Reference />} />
+            <Route path="/technologies" element={<Technologies />} />
+          </Routes>
+        </AnimatePresence>
+        <div className="chatbot">
+          <Chatbot />
+        </div>
+        <div className="footer">
+          <Footer />
+        </div>
       </div>
     </>
   )
