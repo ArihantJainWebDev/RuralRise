@@ -5,7 +5,7 @@ import { Context } from '../../context/Context';
 
 const Home = () => {
   const { onAdviceSent, adviceResultData, adviceLoading, adviceShowResult } = useContext(Context);
-  const [isAdviceLoading, setIsAdviceLoading] = useState(false); // Separate local loading state
+  const [isAdviceLoading, setIsAdviceLoading] = useState(false);
 
   const advicePrompts = [
     "Give me a short motivational advice. Give the answer with English and Hindi separated by a line break.",
@@ -22,16 +22,16 @@ const Home = () => {
   const handleGetAdvice = () => {
     setIsAdviceLoading(true);
     const randomPrompt = advicePrompts[Math.floor(Math.random() * advicePrompts.length)];
-    onAdviceSent(randomPrompt); // Send advice-specific prompt
+    onAdviceSent(randomPrompt);
   };
 
   useEffect(() => {
-    handleGetAdvice(); // Automatically trigger random advice when component loads
+    handleGetAdvice();
   }, []);
 
   useEffect(() => {
     if (adviceShowResult) {
-      setIsAdviceLoading(false); // Reset loading state once result is shown
+      setIsAdviceLoading(false);
     }
   }, [adviceShowResult]);
 

@@ -17,13 +17,11 @@ const Chatbot = () => {
 
   return (
     <>
-      {/* Floating Chat Button */}
       <button onClick={() => setShowChat(true)} className="floating-chat-btn">
         Chat with AI
         <img src="./src/assets/icons/chatbot_4814778.png" alt="chatbot icon" />
       </button>
 
-      {/* AI Chat Overlay */}
       {showChat && (
         <div className="chat-overlay">
           <div className="aipage-container">
@@ -32,7 +30,7 @@ const Chatbot = () => {
             <button className="close-chat-btn" onClick={() => setShowChat(false)}>✖️</button>
             </div>
 
-            {!chatbotShowResult ? (  // <-- updated
+            {!chatbotShowResult ? (
               <div className="chatbot-before">
                 <img src="./src/assets/icons/chatbot_4814778.png" alt="chatbot icon" />
                 <p>Chat with AI</p>
@@ -45,14 +43,14 @@ const Chatbot = () => {
                 </div>
                 <div className="result-data">
                   <img src="./src/assets/icons/botava.png" alt="gemini icon" />
-                  {chatbotLoading ? (  // <-- updated
+                  {chatbotLoading ? (
                     <div className="loader">
                       <hr />
                       <hr />
                       <hr />
                     </div>
                   ) : (
-                    <p dangerouslySetInnerHTML={{ __html: chatbotResultData }}></p>  // <-- updated
+                    <p dangerouslySetInnerHTML={{ __html: chatbotResultData }}></p>
                   )}
                 </div>
               </div>
@@ -67,7 +65,7 @@ const Chatbot = () => {
                   placeholder="Ask your doubt here..."
                 />
                 <img 
-                  onClick={() => onChatbotSent()}  // <-- updated
+                  onClick={() => onChatbotSent()}
                   src="./src/assets/icons/searcbtn3.png" 
                   alt="send-button" 
                   className='send-button'

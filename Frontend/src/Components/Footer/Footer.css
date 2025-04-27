@@ -1,8 +1,29 @@
 .footer {
     display: flex;
     flex-direction: column;
-    padding: 50px 100px;
     background: var(--peach);
+    width: 100%;
+    padding: 20px 100px;
+}
+
+.top-header {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.top-header h1 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--color-black);
+    margin-bottom: 5px;
+}
+
+.top-header span {
+    font-size: 1rem;
+    color: var(--color-black);
 }
 
 .form-control {
@@ -43,15 +64,34 @@ textarea {
     display: flex;
     align-items: center;
     justify-content: center;
-    background: var(--second-color);
-    color: var(--color-white);
+    padding: 10px 20px;
+    background: var(--falu-red);
+    color: #f4f4f4;
+    font-weight: 600;
+    font-size: 1rem;
+    box-shadow: 3px 3px rgb(0, 0, 0, 1);
 }
 
 .form-button>.btn:hover {
-    background: #00B5E7;
+    background: var(--lion);
+    color: var(--falu-red);
+    transition: all 0.2s ease-in-out;
+}
+
+.form-button>.btn:active {
+    scale: 0.95;
+    transition: all 0.2s ease-in-out;
 }
 
 .form-button i {
     font-size: 18px;
     rotate: -45deg;
+}
+
+.row>p {
+    font-size: 0.8rem;
+    color: var(--color-black);
+    margin-top: 10px;
+    width: 100%;
+    text-align: center;
 }

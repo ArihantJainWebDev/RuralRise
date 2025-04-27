@@ -2,8 +2,8 @@
     position: fixed;
     bottom: 20px;
     right: 20px;
-    background-color: #00aaff;
-    color: white;
+    background-color: #333;
+    color: var(--lion);
     padding: 15px;
     border-radius: 50px;
     border: none;
@@ -12,12 +12,24 @@
     justify-content: center;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     cursor: pointer;
-    font-size: 1.5rem;
+    font-size: 1.2rem;
+    font-family: cursive;
+}
+
+.floating-chat-btn:hover {
+    background-color: #555;
+    scale: 1.05;
+    transition: all 0.2s ease;
+}
+
+.floating-chat-btn:active {
+    scale: 0.95;
+    transition: all 0.2s ease;
 }
 
 .floating-chat-btn img {
-    width: 30px;
-    height: 30px;
+    width: 35px;
+    height: 35px;
     margin-left: 8px;
 }
 

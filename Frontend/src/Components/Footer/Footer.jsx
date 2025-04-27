@@ -24,9 +24,9 @@ const Footer = () => {
     setStatus('Submitting...');
 
     try {
-      await axios.post('http://localhost:5000/api/feedback', formData); // changed endpoint
+      await axios.post('http://localhost:5000/api/feedback', formData);
       setStatus('Feedback submitted successfully! Thank you.');
-      setFormData({ name: '', email: '', message: '' }); // Reset form
+      setFormData({ name: '', email: '', message: '' });
     } catch (error) {
       console.error(error);
       setStatus('Failed to submit feedback. Please try again.');
@@ -34,53 +34,56 @@ const Footer = () => {
   };
 
   return (
-    <section className="section" id="feedback">
-      <div className="top-header">
-        <h1>We Value Your Feedback</h1>
-        <span>Tell us what you think about our services!</span>
-      </div>
-      <div className="row">
-        <div className="col">
-          <form className="form-control" onSubmit={handleSubmit}>
-            <div className="form-inputs">
-              <input
-                type="text"
-                id="name"
-                className="input-field"
-                placeholder="Your Name"
-                value={formData.name}
-                onChange={handleChange}
-                required
-              />
-              <input
-                type="email"
-                id="email"
-                className="input-field"
-                placeholder="Your Email"
-                value={formData.email}
-                onChange={handleChange}
-                required
-              />
-            </div>
-            <div className="text-area">
-              <textarea
-                id="message"
-                placeholder="Your Feedback"
-                value={formData.message}
-                onChange={handleChange}
-                required
-              />
-            </div>
-            <div className="form-button">
-              <button className="btn" type="submit">
-                Submit Feedback <i className="uil uil-comment-alt"></i>
-              </button>
-            </div>
-            {status && <p className="status-message">{status}</p>}
-          </form>
+    <footer className="footer">
+      <section className="section" id="feedback">
+        <div className="top-header">
+          <h1>We Value Your Feedback</h1>
+          <span>Tell us what you think about our services!</span>
         </div>
-      </div>
-    </section>
+        <div className="row">
+          <div className="col">
+            <form className="form-control" onSubmit={handleSubmit}>
+              <div className="form-inputs">
+                <input
+                  type="text"
+                  id="name"
+                  className="input-field"
+                  placeholder="Your Name"
+                  value={formData.name}
+                  onChange={handleChange}
+                  required
+                />
+                <input
+                  type="email"
+                  id="email"
+                  className="input-field"
+                  placeholder="Your Email"
+                  value={formData.email}
+                  onChange={handleChange}
+                  required
+                />
+              </div>
+              <div className="text-area">
+                <textarea
+                  id="message"
+                  placeholder="Your Feedback"
+                  value={formData.message}
+                  onChange={handleChange}
+                  required
+                />
+              </div>
+              <div className="form-button">
+                <button className="btn" type="submit">
+                  Submit Feedback <i className="uil uil-comment-alt"></i>
+                </button>
+              </div>
+              {status && <p className="status-message">{status}</p>}
+            </form>
+          </div>
+          <p>&copy; 2025 RuralRise. All rights reserved.</p>
+        </div>
+      </section>
+    </footer>
   )
 }
 
