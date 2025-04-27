@@ -1,3 +1,78 @@
 .home-page {
-    padding-top: 60px;
+    padding-top: 70px;
+}
+
+.advice-section {
+    padding: 20px 0;
+    background-color: var(--peach);
+    height: 50%;
+    width: 100%;
+}
+
+.advice-section section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+.intro-card {
+    border-radius: 10px;
+    padding: 20px;
+    width: 50vw;
+}
+
+.intro-card h1 {
+    font-size: 1.8rem;
+    font-weight: 600;
+    margin-bottom: 5px;
+}
+
+.intro-card ul li {
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+.intro-card ul {
+    padding-left: 0;
+    line-height: 1.5;
+}
+
+.advice-card {
+    border-radius: 10px;
+    padding: 20px;
+    background-color: var(--lion);
+    width: 30vw;
+    min-height: 200px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    color: var(--falu-red);
+}
+
+.advice-card h2 {
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+.advice-card p {
+    font-size: 1rem;
+    font-weight: 400;
+}
+
+.advice-card button {
+    background-color: var(--peach);
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+.advice-card button:hover {
+    background-color: var(--falu-red);
+    color: var(--peach);
+    transition: var(--transition-speed);
 }

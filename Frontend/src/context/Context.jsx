@@ -4,80 +4,117 @@ import runChat from "../config/gemini";
 export const Context = createContext();
 
 const ContextProvider = (props) => {
-
+    // --- Chatbot Section ---
     const [input, setInput] = useState("");
     const [recentPrompt, setRecentPrompt] = useState("");
     const [prevPrompt, setPrevPrompt] = useState([]);
-    const [showResult, setShowResult] = useState(false);
-    const [loading, setLoading] = useState(false);
-    const [resultData, setResultData] = useState("result");
+    const [chatbotResultData, setChatbotResultData] = useState("result");
+    const [chatbotShowResult, setChatbotShowResult] = useState(false);
+    const [chatbotLoading, setChatbotLoading] = useState(false);
 
-    const delayPara = (index, nextWord) => {
+    // --- Advice Section ---
+    const [adviceResultData, setAdviceResultData] = useState("result");
+    const [adviceLoading, setAdviceLoading] = useState(false);
+    const [adviceShowResult, setAdviceShowResult] = useState(false);
+
+    const delayPara = (index, nextWord, setter) => {
         setTimeout(function () {
-            setResultData(prev=>prev+nextWord);
-        },75*index);
-    }
+            setter(prev => prev + nextWord);
+        }, 75 * index);
+    };
 
     const newChat = () => {
-        setLoading(false);
-        setShowResult(false);
-    }
+        setChatbotLoading(false);
+        setChatbotShowResult(false);
+    };
 
-    const onSent = async (prompt) => {
+    // --- Chatbot onSent ---
+    const onChatbotSent = async () => {
+        setChatbotResultData("");
+        setChatbotLoading(true);
+        setChatbotShowResult(true);
 
-        setResultData("");
-        setLoading(true);
-        setShowResult(true);
         let response;
-        if (prompt !== undefined) {
-            response = await runChat(prompt);
-            setRecentPrompt(prompt);
-        }
-        else {
-            setPrevPrompt(prev => [...prev,input]);
+        if (input.trim() !== "") {
+            setPrevPrompt(prev => [...prev, input]);
             setRecentPrompt(input);
             response = await runChat(input);
         }
+
         let responseArray = response.split("**");
         let newResponse = "";
-        for(let i = 0; i < responseArray.length; i++) {
-            if (i === 0 || i%2 !== 1) {
-                newResponse += responseArray[i]; 
-            }
-            else {
-                newResponse += "<b>"+responseArray[i]+"</b>";
+        for (let i = 0; i < responseArray.length; i++) {
+            if (i === 0 || i % 2 !== 1) {
+                newResponse += responseArray[i];
+            } else {
+                newResponse += "<b>" + responseArray[i] + "</b>";
             }
         }
         let newResponse2 = newResponse.split("*").join("</br>");
         let newResponseArray = newResponse2.split(" ");
-        for(let i = 0; i < newResponseArray.length; i++) {
+        for (let i = 0; i < newResponseArray.length; i++) {
             const nextWord = newResponseArray[i];
-            delayPara(i, nextWord+" ");
+            delayPara(i, nextWord + " ", setChatbotResultData);
         }
-        setLoading(false);
+
+        setChatbotLoading(false);
         setInput("");
+    };
 
-    }
+    // --- Advice onSent ---
+    const onAdviceSent = async (prompt) => {
+        setAdviceResultData("");
+        setAdviceLoading(true);
+        setAdviceShowResult(false); // 👈 Start fresh
+      
+        const response = await runChat(prompt);
+      
+        let responseArray = response.split("**");
+        let newResponse = "";
+        for (let i = 0; i < responseArray.length; i++) {
+          if (i === 0 || i % 2 !== 1) {
+            newResponse += responseArray[i];
+          } else {
+            newResponse += "<b>" + responseArray[i] + "</b>";
+          }
+        }
+        let newResponse2 = newResponse.split("*").join("</br>");
+        let newResponseArray = newResponse2.split(" ");
+        for (let i = 0; i < newResponseArray.length; i++) {
+          const nextWord = newResponseArray[i];
+          delayPara(i, nextWord + " ", setAdviceResultData);
+        }
+      
+        setAdviceLoading(false);
+        setAdviceShowResult(true); // 👈 After done loading, show the result
+      };
 
-    const contextValue = {
-        prevPrompt,
-        setPrevPrompt,
+      const contextValue = {
+        // Chatbot states
         input,
         setInput,
-        onSent,
-        showResult,
-        loading,
-        resultData,
+        prevPrompt,
+        setPrevPrompt,
         recentPrompt,
         setRecentPrompt,
+        chatbotResultData,
+        chatbotShowResult,
+        chatbotLoading,
+        onChatbotSent,
         newChat,
-    }
+      
+        // Advice states
+        adviceResultData,
+        adviceLoading,
+        adviceShowResult, // 👈 Add this
+        onAdviceSent,
+      };
 
     return (
         <Context.Provider value={contextValue}>
             {props.children}
         </Context.Provider>
-    )
-}
+    );
+};
 
 export default ContextProvider;
